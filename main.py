@@ -32,10 +32,9 @@ async def on_ready():
 
 @bot.tree.command(name="polo", description="Spam Message by ozeu 😈")
 async def polo(interaction: discord.Interaction):
-    msg = await interaction.response.send_message(
-        "ボタンを押すとメッセージが3回返信されます", 
-        view=PoloView(await interaction.original_response())
-    )
+    await interaction.response.send_message("ボタンを押すとメッセージが3回返信されます")
+    msg = await interaction.original_response()
+    await msg.edit(view=PoloView(msg))
 
 keep_alive()
 
